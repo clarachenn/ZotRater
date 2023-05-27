@@ -4,38 +4,49 @@
 <!--  HEADER OF THE PAGE -->
 
 <head>
-    <title>ZotoMeter</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>ZotRater</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>ZotoMeter</h1>
+  <h1>ZotRater</h1>
 
-    <div class="container">
-        <form action="#" method="post" id="evaluation-form">
-          <div class="form-group">
-            <div class="input-group">
-              <label for="course-code">Course Code:</label>
-              <input type="text" id="course-code" name="course-code" required>
-              <button class = "submit-button" id="submit">Submit</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="radio-group">
-              <input type="radio" name="option" id="option-pnp" value="pnp" required>
-              <label for="option-pnp">P/NP</label>
-              <input type="radio" name="option" id="option-g" value="g" required>
-              <label for="option-g">G</label>
-            </div>
-          </div>
-        </form>
-        <div id="result"></div>
-        <div id="course-codes-container"></div>
-    </div>
-    <div class="Rate">
-        <button class = "evaluate-button" id="evaluate" disabled>Evaluate</button>
-    </div>
-    <script src = "app.js"></script>
+  <div class="container">
+    <form action="#" method="post" id="evaluation-form">
+      <div class="form-group">
+        <div class="input-group">
+          <label for="course-code">Course Code:</label>
+          <input type="text" id="course-code" name="course-code" required>
+          <button class="submit-button" id="submit">Submit</button>
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <br>
+        <div class="radio-group">
+          <label for="Choose Grading Option:">Choose Grading Option:</label>
+          <input type="radio" name="option" id="option-pnp" value="pnp" required>
+          <label for="option-pnp">P/NP</label>
+          <input type="radio" name="option" id="option-g" value="g" required>
+          <label for="option-g">Grade</label>
+        </div>
+
+      </div>
+
+    </form>
+    <div id="result"></div>
+    <div id="course-codes-container"></div>
+  </div>
+
+  <div class="Rate">
+    <br>
+    <button class="evaluate-button" id="evaluate" disabled>Evaluate</button>
+  </div>
+
+  <script src="script_input_course.js"></script>
+
+
 </body>
 
 </html>
