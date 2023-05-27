@@ -59,7 +59,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function createDepartments() {
         const dropDown = document.getElementById("departments");
-        const options = ["Option 1", "Option 2", "Option 3"];
+        fetch("http://localhost:5000/get_names")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+            });
+        const options = ["Option 1", "Option 2", "Option 3",, "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3", "Option 3"];
 
         for (let i = 0; i < options.length; i++)
         {
@@ -77,13 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'ratings.html';
         totalInput = []
         /*
-        let selectedOption = "";
-        for (const option of radioOptions) {
-            if (option.checked) {
-                selectedOption = option.value;
-                break;
-            }
-        }
+        
         const courseCode = courseCodeInput.value;
         $.ajax({
             url: '/evaluate',
