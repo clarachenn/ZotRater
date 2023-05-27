@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         displayInput();
-
+        console.log(window.location.origin);
         evaluateButton.removeAttribute("disabled");
 
     });
@@ -59,7 +59,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function createDepartments() {
         const dropDown = document.getElementById("departments");
-        fetch("http://localhost:5000/get_names")
+        fetch("http://localhost:5000/get_names", {
+            headers: {
+                'Access-Control-Allow-Origin':'*'
+              }})
+
             .then(response => response.text())
             .then(result => {
                 console.log(result);
