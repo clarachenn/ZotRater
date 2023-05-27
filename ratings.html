@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+<!--  HEADER OF THE PAGE -->
+
 <head>
     <title>ZotoMeter</title>
     <link rel="stylesheet" href="styles.css">
@@ -8,27 +10,11 @@
 
 <body>
     <h1>ZotoMeter</h1>
-
-    <div class="container">
-        <form action="#" method="post" id="evaluation-form">
-          <div class="form-group">
-            <div class="input-group">
-              <label for="course-code">Course Code:</label>
-              <input type="text" id="course-code" name="course-code" required>
-            </div>
-            <div class="radio-group">
-              <input type="radio" name="option" id="option-pnp" value="pnp" required>
-              <label for="option-pnp">P/NP</label>
-              <input type="radio" name="option" id="option-g" value="g" required>
-              <label for="option-g">G</label>
-            </div>
-          </div>
-          <button type="submit">Evaluate</button>
-        </form>
-        <div id="result"></div>
-    </div>
+    <h2>Here are Your Ratings:</h2>
 
     <div id="ratingContainer">
+
+        <!--  RATING 1: PROFESSOR DIFFICULTY -->
         <div class="ratingSlider">
             <div class="sliderLabel">Professor Difficulty</div>
             <div class="slider">
@@ -38,6 +24,7 @@
             <div class="emoji">😢</div>
         </div>
 
+        <!--  RATING 2: ACADEMIC DIFFICULTY-->
         <div class="ratingSlider">
             <div class="sliderLabel">Academic Strain</div>
             <div class="slider">
@@ -47,6 +34,7 @@
             <div class="emoji">😐</div>
         </div>
 
+        <!--  RATING 3: FRI-YAY -->
         <div class="ratingSlider">
             <div class="sliderLabel">Fri-Yay</div>
             <div class="slider">
@@ -56,6 +44,7 @@
             <div class="emoji">😐</div>
         </div>
 
+        <!--  RATING 4: FLEXIBILITY -->
         <div class="ratingSlider">
             <div class="sliderLabel">Flexibility</div>
             <div class="slider">
@@ -66,6 +55,7 @@
         </div>
     </div>
 
+    <script src="app.js"></script>
 </body>
 
 </html>

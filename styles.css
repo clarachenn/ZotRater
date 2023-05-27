@@ -18,9 +18,11 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px;
     margin-right: 10px;
-    display: flex;
+    display: flex; */
+    display: grid;
+    place-content: center;
 }
   
 .input-group {
@@ -30,27 +32,42 @@ h1 {
     align-items: center;
 }
   
-.input-group label {
-    margin-right: 10px;
-}
-  
 .radio-group {
-    margin-left: 20px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
   
 .radio-group label {
     margin-right: 5px;
 }
-  
+
 button {
     margin-top: 10px;
-    padding: 10px 20px;
+    margin-left: 20px;
+    padding: 5px 10px;
     background-color: #337ab7;
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+.submit-button {
+    padding: 10px 20px;
+}
+
+.evaluate-button {
+    padding: 10px 20px;
+}
+
+.course-code-row {
+    align-items: center;
+    margin-bottom: 5px;
+}
+  
+.course-code-row span {
+    margin-right: 5px;
+    align-items: center;
 }
 
 #ratingContainer {
