@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("evaluation-form");
     const courseCodeInput = document.getElementById("course-code");
-    const resultDiv = document.getElementById("result");
     const optionInput = document.getElementsByName("option");
     const courseCodesContainer = document.getElementById("course-codes-container");
+    const submitButton = document.getElementById("submit");
+    const evaluateButton = document.getElementById("evaluate");
+    const totalInput = [];
 
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        displayInput();
 
-    courseCodeInput.addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            displayInput();
-        }
+        evaluateButton.removeAttribute("disabled");
 
-        
     });
     
-    form.addEventListener("submit", function(event) {
+    evaluateButton.addEventListener("click", function(event) {
         event.preventDefault();
         performEvaluation();
     });
@@ -29,16 +29,18 @@ document.addEventListener("DOMContentLoaded", function() {
             if (optionInput[i].checked)
             {
                 gpa = optionInput[i].value;
+                optionInput[i].checked = false;
                 break;
             }
+
         }
-        
+        totalInput.push([courseCode, gpa])
         const row = document.createElement("div");
         row.classList.add("course-code-row");
     
         const courseCodeText = document.createElement("span");
         courseCode.className= ".from-group"
-        courseCodeText.textContent = "1: " + courseCode + " " + gpa;
+        courseCodeText.textContent = courseCode + "    " + gpa;
         row.appendChild(courseCodeText);
     
         const deleteButton = document.createElement("button");
@@ -59,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Functionality for evaluating the course code goes here
         // This function can be implemented separately
         console.log("Performing evaluation...");
+        console.log(totalInput);
         /*
         let selectedOption = "";
         for (const option of radioOptions) {

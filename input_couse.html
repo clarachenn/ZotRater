@@ -13,48 +13,29 @@
 
     <div class="container">
         <form action="#" method="post" id="evaluation-form">
-            <div class="form-group">
-                <div class="input-group">
-                    <label for="course-code">Course Code:</label>
-                    <select id="course-code" name="course-code" required></select>
-                </div>
-                <div class="radio-group">
-                    <input type="radio" name="option" id="option-pnp" value="pnp" required>
-                    <label for="option-pnp">P/NP</label>
-                    <input type="radio" name="option" id="option-g" value="g" required>
-                    <label for="option-g">G</label>
-                </div>
+          <div class="form-group">
+            <div class="input-group">
+              <label for="course-code">Course Code:</label>
+              <input type="text" id="course-code" name="course-code" required>
+              <button class = "submit-button" id="submit">Submit</button>
             </div>
-            <button type="submit">Evaluate</button>
-        </form>
-        <div id="result"></div>
-    </div>
-
-
-    <div class="container">
-        <form action="#" method="post" id="evaluation-form">
-            <div class="form-group">
-                <div class="input-group">
-                    <label for="course-code">Course Code:</label>
-                    <input type="text" id="course-code" name="course-code" required>
-                    <button class="submit-button" type="submit">Submit</button>
-                </div>
+          </div>
+          <div class="form-group">
+            <div class="radio-group">
+              <input type="radio" name="option" id="option-pnp" value="pnp" required>
+              <label for="option-pnp">P/NP</label>
+              <input type="radio" name="option" id="option-g" value="g" required>
+              <label for="option-g">G</label>
             </div>
-            <div class="form-group">
-                <div class="radio-group">
-                    <input type="radio" name="option" id="option-pnp" value="pnp" required>
-                    <label for="option-pnp">P/NP</label>
-                    <input type="radio" name="option" id="option-g" value="g" required>
-                    <label for="option-g">G</label>
-                </div>
-            </div>
+          </div>
         </form>
         <div id="result"></div>
         <div id="course-codes-container"></div>
     </div>
-
-
-    <script src="script.js"></script>
+    <div class="Rate">
+        <button class = "evaluate-button" id="evaluate" disabled>Evaluate</button>
+    </div>
+    <script src = "app.js"></script>
 </body>
 
 </html>
