@@ -57,6 +57,18 @@ document.addEventListener("DOMContentLoaded", function() {
           
     }
 
+    function createDepartments() {
+        const dropDown = document.getElementById("departments");
+        const options = ["Option 1", "Option 2", "Option 3"];
+
+        for (let i = 0; i < options.length; i++)
+        {
+            const option = document.createElement("option");
+            option.text = options[i];
+            dropDown.add(option);
+        }
+    }
+
     function performEvaluation() {
         // Functionality for evaluating the course code goes here
         // This function can be implemented separately
@@ -86,4 +98,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         */
     }
+    createDepartments();
 });
