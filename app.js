@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // This function can be implemented separately
         console.log("Performing evaluation...");
         console.log(totalInput);
+        window.location.href = 'ratings.html';
+        totalInput = []
         /*
         let selectedOption = "";
         for (const option of radioOptions) {
