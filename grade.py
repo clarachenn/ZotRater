@@ -7,11 +7,11 @@ class Grade(WebAPI):
         self.number = number
         self.course_type = course_type
         self.professor = professor
-        self.average_gpa = None
-        self.pass_count = None
-        self.no_pass_count = None
+        self.course_gpa = 0
+        self.pass_count = 0
+        self.no_pass_count = 0
 
-    def load_data(self):
+    def load_grade_data(self):
         self.department = self.set_proper_format(self.department)
         self.number = self.set_proper_format(self.number)
         self.professor = self.set_proper_format(self.professor)
