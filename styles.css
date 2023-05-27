@@ -1,10 +1,56 @@
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
 h1 {
     margin-top: 30px;
+}
+
+.container {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: flex;
+}
+  
+.input-group {
+    margin-right: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+  
+.input-group label {
+    margin-right: 10px;
+}
+  
+.radio-group {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+  
+.radio-group label {
+    margin-right: 5px;
+}
+  
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 #ratingContainer {
