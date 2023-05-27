@@ -19,6 +19,10 @@ class Planner:
         self.compatibility = ""
 
     def set_course_obj_list(self):
+        """
+        creates course objects and appends them to the planner's course_obj_list attribute
+        :return:
+        """
         for course in self.courses_list:
             course_code = course[0]
             grading_opt = course[1]
@@ -37,6 +41,10 @@ class Planner:
     """
 
     def set_average_gpa(self):
+        """
+        calculates the average gpa of all the courses combined
+        :return:
+        """
         all_gpa_sum = 0
         for course_obj in self.course_obj_list:
             current_course_gpa = course_obj.grade_obj.course_gpa
@@ -50,12 +58,20 @@ class Planner:
     """
 
     def set_average_rating(self):
+        """
+        calculates the average rating of all the courses' ratings combined
+        :return:
+        """
         rating_sum = 0
         for course in self.course_obj_list:
             rating_sum += course.course_rating
         self.average_rating = rating_sum / self.num_courses
 
     def set_compatibility_score(self):
+        """
+        sets the compatibility score depending on the average rating of all courses
+        :return:
+        """
         if self.average_rating >= 9:
             self.compatibility = "perfect"
         elif self.average_rating >= 8:
@@ -66,4 +82,3 @@ class Planner:
             self.compatibility = "ok"
         elif self.average_rating >= 2:
             self.compatibility = "poor"
-

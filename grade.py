@@ -12,6 +12,10 @@ class Grade(WebAPI):
         self.no_pass_count = 0
 
     def load_grade_data(self):
+        """
+        downloads info from the url and updates the object's attributes with the data
+        :return:
+        """
         self.department = self.set_proper_format(self.department)
         self.number = self.set_proper_format(self.number)
         self.professor = self.set_proper_format(self.professor)

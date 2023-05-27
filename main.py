@@ -1,26 +1,26 @@
-from course import Course
+from planner import Planner
 
 
-def get_course_obj_list(courses_list):
-    course_obj_list = []
-    for course in courses_list:
-        course_code = course[0]
-        grading_opt = course[1]
-        course_obj = Course(course_code, grading_opt)
-        course_obj_list.append(course_obj)
-    return course_obj_list
+def run(courses_list):
+    # get course codes and grading option from input - nested list
+    # [[34401, "G"],[23344, "G"],[89000, "PNP"]]
 
+    planner = Planner(courses_list)
 
-def calc_compatibility(course_obj_list):
-    for course_obj in course_obj_list:
-        pass
+    # set planner attributes
+    planner.set_course_obj_list()
+    planner.set_average_gpa()
+    planner.set_average_rating()
+    planner.set_compatibility_score()
+
+    # get planner attributes
+    compatibility = planner.compatibility
+    return compatibility
 
 
 def main():
-    # get course codes and grading option from input - list
     courses_list = []
-    course_obj_list = get_course_obj_list(courses_list)
-    calc_compatibility(course_obj_list)
+    run(courses_list)
 
 
 if __name__ == "__main__":
