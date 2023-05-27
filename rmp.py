@@ -62,8 +62,3 @@ class Professor:
                 element = element.replace("&#x27;", "'")
             lst.append(element.strip())
         self.top_tags = lst
-
-
-if __name__ == "__main__":
-    cls = Professor("Smith, L")
-    cls.obtain_data()
