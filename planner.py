@@ -24,13 +24,14 @@ class Planner:
         :return:
         """
         for course in self.courses_list:
-            course_code = course[0]
-            grading_opt = course[1]
-            course_obj = Course(course_code, grading_opt)
-            course.load_course_data()
-            course.set_grade()
-            course.set_prof_obj()
-            course.set_course_rating()
+            course_dept = course[0]
+            course_code = course[1]
+            grading_opt = course[2]
+            course_obj = Course(course_dept, course_code, grading_opt)
+            course_obj.load_course_data()
+            course_obj.set_grade()
+            course_obj.set_prof_obj()
+            course_obj.set_course_rating()
             self.course_obj_list.append(course_obj)
 
     """
@@ -49,7 +50,11 @@ class Planner:
         for course_obj in self.course_obj_list:
             current_course_gpa = course_obj.grade_obj.course_gpa
             all_gpa_sum += current_course_gpa
-        self.all_courses_gpa = all_gpa_sum / self.num_courses
+        try:
+            self.all_courses_gpa = all_gpa_sum / self.num_courses
+        except ZeroDivisionError:
+
+            print("no courses entered")
 
     """
     def set_course_prof_list(self):
