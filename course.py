@@ -1,13 +1,14 @@
+import json
 from WebAPI import WebAPI
 from grade import Grade
 from rmp import Professor
 
 
 class Course(WebAPI):
-    def __init__(self, course_code, grade_option):
+    def __init__(self, department, course_code, grade_option):
         self.course_code = course_code
         self.grade_option = grade_option
-        self.department = ""
+        self.department = department
         self.number = 0
         self.course_type = ""
         self.professor = ""
@@ -16,24 +17,33 @@ class Course(WebAPI):
         self.course_rating = 0
         self.units = 0
 
+    def extract_json(self, json_msg):
+        try:
+            json_obj = json.loads(json_msg)
+            self.number = json_obj["schools"][0]["departments"][0]["courses"][0]["courseNumber"]
+            self.professor = json_obj["schools"][0]["departments"][0]["courses"][0]["sections"][0]["instructors"][0]
+            self.course_type = json_obj["schools"][0]["departments"][0]["courses"][0]["sections"][0]["sectionType"]
+            self.units = json_obj["schools"][0]["departments"][0]["courses"][0]["sections"][0]["units"]
+        except IndexError:
+            return "dept + course code don't match"
+        except json.JSONDecodeError:
+            print("JSON cannot be decoded.")
+
     def load_course_data(self):
         """
         downloads data with from the PeterPortal API with the course code and term.
         sets the object's attributes to the data
         :return:
         """
+        self.department = self.set_proper_format(self.department)
         term = "Fall"
-        url = f"https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20{term}&sectionCode={self.course_code}"
+        url = self.set_proper_format(f"https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20{term}&"
+                                     f"department={self.department}&sectionCodes={self.course_code}")
         course_obj = self.download_url_info(url)
-        print(course_obj)
 
-        """
         if course_obj is not None:
-            self.course_name = course_obj[]
-            self.professor = course_obj[]
-            self.course_type = course_obj[]
-            self.units = course_obj[]
-        """
+            json_obj = json.dumps(course_obj)
+            self.extract_json(json_obj)
 
     def set_grade(self):
         """
@@ -59,7 +69,7 @@ class Course(WebAPI):
 
 
 def main():
-    n = Course("35530", "P")
+    n = Course("I&C Sci", "35680", "P")
     n.load_course_data()
     n.set_grade()
 
