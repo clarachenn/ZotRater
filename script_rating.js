@@ -1,6 +1,8 @@
 //javascript for ratings.html
 -document.addEventListener('DOMContentLoaded', function () {
     var sliders = document.getElementsByClassName('slider');
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('data');
 
     Array.prototype.forEach.call(sliders, function (slider) {
         var sliderHandle = slider.querySelector('.sliderHandle');
@@ -9,7 +11,7 @@
 
         sliderHandle.addEventListener('mousedown', function (event) {
             event.preventDefault();
-            document.addEventListener('mousemove', moveSlider);
+            //document.addEventListener('mousemove', moveSlider);
             document.addEventListener('mouseup', stopSlider);
         });
         /*
@@ -31,6 +33,7 @@
         }
 
         function updateEmoji(rating) {
+            console.log(rating);
             if (rating < 2.5) {
                 emoji.innerHTML = '😢';
             } else if (rating >= 2.5 && rating <= 3.4) {
@@ -39,5 +42,6 @@
                 emoji.innerHTML = '😄';
             }
         }
+        updateEmoji(myParam);
     });
 });

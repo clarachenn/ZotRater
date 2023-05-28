@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
         }
-        //totalInput.push([courseCode, gpa, dropDown.value])
-        totalInput.push([dropDown.value, courseCode, gpa.toUpperCase])
+        totalInput.push([dropDown.value, courseCode, gpa.toUpperCase()]);
         const row = document.createElement("div");
         row.classList.add("course-code-row");
     
@@ -74,13 +73,14 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
     function performEvaluation() {
-        // Functionality for evaluating the course code goes here
-        // This function can be implemented separately
         console.log("Performing evaluation...");
-        //console.log(totalInput);
         const test = [["I&C Sci", "35680", "G"], ["COMPSCI", "23344", "G"], ["I&C Sci", "89000", "PNP"]];
-        const encodedTest = JSON.stringify(test);
-        
+        console.log(totalInput[0][2]);
+        const encodedTest = JSON.stringify(totalInput);
+        while (courseCodesContainer.firstChild)
+        {
+            courseCodesContainer.removeChild(courseCodesContainer.firstChild);
+        }
         fetch('http://localhost:5000/run', {
             method: 'POST',
             headers: {
@@ -90,17 +90,28 @@ document.addEventListener("DOMContentLoaded", function() {
         })
           .then(response => {
             if (!response.ok) {
-                console.log("ERROORRRRRR");
             }
             return response.json();
         })
           .then(result => {
             console.log(result);
+            if (typeof(result) != 'string')
+            {
+                alert(result.detail);
+                
+                return;
+            }
+            //if (console.log)
+            console.log(result.detail);
+            
+            const data = 3.5;
+            window.location.href = `ratings.html?data=${data}`;
+            
           })
           .catch(error => {
             console.error("Error: ", error);
           });
-        //window.location.href = 'ratings.html?data=Z';
+        
         totalInput = []
         
     }
