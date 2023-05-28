@@ -1,12 +1,27 @@
 //javascript for ratings.html
 const urlParams = new URLSearchParams(window.location.search);
-var data = urlParams.get('data');
+var data = urlParams.get('overall_rating');
+var data1 = urlParams.get('response');
+var data2 = urlParams.get('prof_name');
+
+var data3 = urlParams.get('course_rating');
+
+var data4 = urlParams.get('course_gpa');
+
+var data5 = urlParams.get('pass_rate');
+
+var data6 = urlParams.get('prof_rating');
+
+var data7 = urlParams.get('prof_diff');
+var data8 = urlParams.get('keywords');
+
+data = [data, data1, data2, data3, data4, data5, data6, data7, data8];
+console.log(data);
 //const container = document.getElementById('ratingContainer');
 
 function displayClassItems() {
     const container = document.getElementById('info');
-    const values = data.split(',');
-
+/*
     // Construct the desired array format
     const transformedArray = [
         parseFloat(values[0]), // First value as a number
@@ -16,15 +31,12 @@ function displayClassItems() {
         [parseFloat(values[8]), parseFloat(values[9])], // Seventh and eighth values as an array
         [parseFloat(values[10]), parseFloat(values[11])], // Ninth and tenth values as an array
         [parseFloat(values[12]), parseFloat(values[13])], // Eleventh and twelfth values as an array
-        [parseFloat(values[14]), parseFloat(values[15])], // Thirteenth and fourteenth values as an array
+        [parseFloat(values[14]), parseFloat(values[16])], // Thirteenth and fourteenth values as an array
         values.slice(16, 20), // Fifteenth to eighteenth values as an array
         values.slice(20) // Remaining values as an array
       ];
-
+*/
     // Log the transformed array
-    console.log(transformedArray);
-    data = transformedArray;
-    console.log(data.length);
     //container.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         if (i === 0) {
@@ -41,18 +53,31 @@ function displayClassItems() {
           container.appendChild(responseElement);
         } else if (i === 2) {
           const profNames = data[i];
+          
+          const array = data[i].split(',').map(str => str.trim());
+
+          const mergedArray = [];
+
+          for (let i = 0; i < array.length; i += 2) {
+            if (i + 1 < array.length) {
+                const mergedElement = array[i] + ' ' + array[i + 1];
+                mergedArray.push(mergedElement);
+            } else {
+                mergedArray.push(array[i]);
+            }
+          }
+          
           const profNamesElement = document.createElement('div');
           profNamesElement.classList.add('side-by-side');
           
-          for (let j = 0; j < profNames.length; j++) {
+          for (let j = 0; j < mergedArray.length; j++) {
             const profNameElement = document.createElement('p');
-            profNameElement.textContent = `Professor Name: ${profNames[j]}`;
+            profNameElement.textContent = `Professor Name: ${mergedArray[j]}`;
             profNamesElement.appendChild(profNameElement);
           }
           
           container.appendChild(profNamesElement);
         } else if (i === 8 || i === 9) {
-            console.log(data[i]);
             const profWords = data[i];
             const profWordsElement = document.createElement('div');
             profWordsElement.classList.add('side-by-side');
@@ -64,7 +89,11 @@ function displayClassItems() {
         else {
             console.log(i);
             console.log(data[i]);
-          const ratings = data[i];
+            const array = data[i].split(',').map(str => str.trim());
+            console.log(array);
+  
+           
+          const ratings = array;
           const ratingsElement = document.createElement('div');
           ratingsElement.classList.add('side-by-side');
           
