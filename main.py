@@ -30,8 +30,6 @@ class CustomException(Exception):
 
 def run(courses_list):
     # get course codes and grading option from input - nested list
-    # courses_list format: [["I&C Sci", 34401, "G"],["COMPSCI", 23344, "G"],["I&C Sci", 89000, "PNP"]]
-
     planner = Planner(courses_list)
 
     # set planner attributes
@@ -40,11 +38,9 @@ def run(courses_list):
     planner.set_average_rating()
     planner.set_compatibility_word()
 
-    print(planner.compatibility_score)
-    # get planner attributes
-
-    compatibility = planner.compatibility_word
-    return compatibility
+    print("planner compatibility:", planner.compatibility_score)
+    print("compatibility word:", planner.compatibility_word)
+    return planner.compatibility_word
 
 
 @app.get("/get_course_directory")
@@ -68,7 +64,7 @@ def get_course_directory():
 
 
 def main():
-    courses_list = [["I&C Sci", 35680, "G"], ["I&C Sci", 35610, "G"], ["I&C Sci", 89000, "PNP"]]
+    courses_list = [["I&C Sci", 35680, "G"], ["I&C Sci", 35610, "G"], ["I&C Sci", 35640, "PNP"]]
     run(courses_list)
 
 
