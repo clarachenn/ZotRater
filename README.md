@@ -41,6 +41,12 @@ Python, HTML, CSS, JavaScript
 ## Future Enhancements
 * Expand the database of professor ratings and difficulty to provide more accurate evaluations.
 
+## Contributors:
+* Clara Chen
+* Laila Wafaie
+* Maitreyi Pareek
+* Waylon Zhu
+
 ## Important Links
 Devpost Submission:
 
