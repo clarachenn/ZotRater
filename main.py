@@ -20,8 +20,6 @@ app.add_middleware(
 )
 
 
-
-
 def run(courses_list):
     # get course codes and grading option from input - nested list
     # courses_list format: [["I&C Sci", 34401, "G"],["COMPSCI", 23344, "G"],["I&C Sci", 89000, "PNP"]]
@@ -62,9 +60,6 @@ def get_course_directory():
 
 
 def main():
-
-
-
     print(get_course_directory())
 
     courses_list = [["I&C Sci", 35680, "G"], ["COMPSCI", 23344, "G"], ["I&C Sci", 89000, "PNP"]]

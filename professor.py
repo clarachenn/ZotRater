@@ -15,7 +15,7 @@ class Professor:
         link_name = f"{f_name}%20{l_name}"
         return link_name
 
-    def obtain_data(self):
+    def load_prof_data(self):
         name = self.rate_my_professor()
         url = f"https://www.ratemyprofessors.com/search/professors/1074?q={name}"
         response = requests.get(url)
