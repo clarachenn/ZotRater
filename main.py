@@ -55,14 +55,14 @@ def run(courses_list: list[list[str | int]]):
         decoded_str = parse.unquote(course.department)
         course_name_list.append(f"{decoded_str} {course.number}")
         prof_name_list.append(course.professor)
-        course_rating_list.append(course.course_rating)
+        course_rating_list.append(f"{course.course_rating:.2f}")
         course_gpa_list.append(f"{course.grade_obj.course_gpa:.2f}")
         pass_rate = course.grade_obj.pass_count / (course.grade_obj.pass_count + course.grade_obj.no_pass_count)
         pass_rate_list.append(f"{pass_rate:.2f}")
         prof_rating_list.append(course.prof_obj.prof_rating)
         prof_difficulty_list.append(course.prof_obj.prof_diff)
         prof_keywords_list.append(course.prof_obj.top_tags)
-    return [f"{planner.average_rating:.2f}", planner.compatibility_word, course_rating_list, course_gpa_list, pass_rate_list, prof_rating_list, prof_difficulty_list, prof_keywords_list]
+    return [f"{planner.average_rating:.2f}", planner.compatibility_word, prof_name_list, course_rating_list, course_gpa_list, pass_rate_list, prof_rating_list, prof_difficulty_list, prof_keywords_list]
 
 
 @app.get("/get_course_directory")
