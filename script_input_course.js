@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const courseCodesContainer = document.getElementById("course-codes-container");
     const submitButton = document.getElementById("submit");
     const evaluateButton = document.getElementById("evaluate");
-    const totalInput = [];
+    const dropDown = document.getElementById("departments");
+    var totalInput = [];
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
+        
         displayInput();
-
         evaluateButton.removeAttribute("disabled");
 
     });
@@ -34,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
         }
-        totalInput.push([courseCode, gpa])
+        //totalInput.push([courseCode, gpa, dropDown.value])
+        totalInput.push([dropDown.value, courseCode, gpa.toUpperCase])
         const row = document.createElement("div");
         row.classList.add("course-code-row");
     
@@ -52,38 +54,50 @@ document.addEventListener("DOMContentLoaded", function() {
     
         courseCodesContainer.appendChild(row);
     
-        courseCodeInput.value = "";
-
-          
+        courseCodeInput.value = "";          
     }
+
+    function createDepartments() {
+        fetch("http://localhost:5000/get_course_directory")
+          .then(response => response.json())
+          .then(result => {
+            const dropDown = document.getElementById("departments");
+            for (let i = 0; i < result.length; i++) {
+              const option = document.createElement("option");
+              option.text = result[i];
+              dropDown.add(option);
+            }
+          })
+          .catch(error => {
+            console.error("Error: ", error);
+          });
+      }
 
     function performEvaluation() {
         // Functionality for evaluating the course code goes here
         // This function can be implemented separately
         console.log("Performing evaluation...");
-        console.log(totalInput);
-        window.location.href = 'ratings.html';
-        totalInput = []
-        /*
-        let selectedOption = "";
-        for (const option of radioOptions) {
-            if (option.checked) {
-                selectedOption = option.value;
-                break;
-            }
-        }
-        const courseCode = courseCodeInput.value;
-        $.ajax({
-            url: '/evaluate',
+        //console.log(totalInput);
+        const test = [["I&C Sci", "35680", "G"], ["COMPSCI", "23344", "G"], ["I&C Sci", "89000", "PNP"]];
+        const encodedTest = JSON.stringify(test);
+
+        fetch('http://localhost:5000/run', {
             method: 'POST',
-            data: { 'course_code': courseCode },
-            success: function(response) {
-                resultDiv.textContent = 'Evaluation result: ' + response.result;
+            headers: {
+                'Content-Type': 'application/json'
             },
-            error: function() {
-                resultDiv.textContent = 'Error occurred during evaluation.';
-            }
-        });
-        */
+            body : encodedTest
+        })
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+          })
+          .catch(error => {
+            console.error("Error: ", error);
+          });
+        //window.location.href = 'ratings.html';
+        totalInput = []
+        
     }
+    createDepartments();
 });
