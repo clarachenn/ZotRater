@@ -51,6 +51,7 @@ def run(courses_list: list[list[str | int]]):
     prof_rating_list = []
     prof_difficulty_list = []
     prof_keywords_list = []
+    
     for course in planner.course_obj_list:
         decoded_str = parse.unquote(course.department)
         course_name_list.append(f"{decoded_str} {course.number}")
@@ -62,6 +63,7 @@ def run(courses_list: list[list[str | int]]):
         prof_rating_list.append(course.prof_obj.prof_rating)
         prof_difficulty_list.append(course.prof_obj.prof_diff)
         prof_keywords_list.append(course.prof_obj.top_tags)
+    
     return [f"{planner.average_rating:.2f}", planner.compatibility_word, course_rating_list, course_gpa_list, pass_rate_list, prof_rating_list, prof_difficulty_list, prof_keywords_list]
 
 
@@ -92,5 +94,5 @@ def main():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app",  port=5001, reload = True)
+    uvicorn.run("main:app",  port=5000, reload = True)
     main()
