@@ -1,6 +1,25 @@
 import json
 from pathlib import Path
 from planner import Planner
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+
+app = FastAPI()
+origins = [
+    "http://127.0.0.1:5500",
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
 
 
 def run(courses_list):
@@ -22,6 +41,7 @@ def run(courses_list):
     return compatibility
 
 
+@app.get("/get_course_directory")
 def get_course_directory():
     path = "courses.json"
     my_path = Path(path)
@@ -42,13 +62,8 @@ def get_course_directory():
 
 
 def main():
-    gpa = 3.828
-    prof_rating = 4.4
-    units = 4
-    prof_difficulty = 3
 
-    res = (gpa * 2) + (prof_rating * 1.25) - (units * 0.3) - (prof_difficulty * 0.75)
-    print(res)
+
 
     print(get_course_directory())
 
@@ -57,5 +72,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=5000)
     main()
 
