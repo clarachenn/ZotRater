@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         row.appendChild(courseCodeText);
     
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Remove";
+        deleteButton.textContent = "X";
         deleteButton.addEventListener("click", function() {
           row.remove();
         });

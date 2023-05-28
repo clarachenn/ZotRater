@@ -1,100 +1,70 @@
 <!DOCTYPE html>
 <html>
-
-<!--  HEADER OF THE PAGE -->
-<header>
-  <div class="logo">
-    <img src="anteater-logo.png" alt="Anteater Logo" style=="width:100px;height:100px;">
-    <!--
-    <a href="#" class="logo">ZotRater</a>
-    <nav class="nav-items">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-    -->
-    <h1 style="background-color:DodgerBlue;">Zot-Rater</h1>
-    <p>Rate your Schedule!</p>
-    <link rel="stylesheet" href="styles.css">
-</header>
-<br>
-
-<hr>
-
-<!DOCTYPE html>
-<html>
-
 <head>
+  <title>ZotRater</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <br>
-  <p style="color:DodgerBlue;" style="font-family:verdana;">Use the dropdown menu and textbox to enter your Courses↓</p>
+  <header>
+    <div class="logo">
+      <h1>ZotRater</h1>
+      <p>Rate your schedule!</p>
+    </div>
 
-  <br>
+  </header>
+    <div class="logo2">
+      <img src="petr.png" width="300">
+    </div>
+  <hr>
+
   <div class="container">
+    <br>
+    <p style="color:DodgerBlue; font-family:verdana;">Enter your courses below:</p>
+
+    <br>
+
     <form action="#" method="post" id="evaluation-form">
-      <table style="background-color:#33475b;margin-left:auto;margin-right:auto;">
+      <table>
         <tr>
-          <th style=" width:20%">School</th>
+          <th>Department</th>
           <th>Course Code</th>
           <th>Grading Option</th>
+          <th></th> <!-- Empty column for the submit button -->
         </tr>
         <tr>
           <td>
-
             <select name="departmentsList" id="departments" required>
               <option value="">--select--</option>
             </select>
           </td>
           <td>
-
             <input type="text" id="course-code" name="course-code" required>
           </td>
-
           <td>
-            <input type="radio" name="option" id="option-pnp" value="pnp" required>
-            <label for="option-pnp">P/NP</label>
-            <br>
-            <input type="radio" name="option" id="option-g" value="g" required>
+            <input type="radio" name="option" id="option-g" value="G" required>
             <label for="option-g">Letter Grade</label>
+            <br>
+            <input type="radio" name="option" id="option-pnp" value="PNP" required>
+            <label for="option-pnp">P/NP</label>
+          </td>
+          <td>
+            <button class="submit-button" id="submit">Submit</button>
           </td>
         </tr>
       </table>
-
-      <button class="submit-button" id="submit">Submit</button>
-
     </form>
 
+    <ul class="list-left" id="dynamic-list"></ul>
     <div id="result"></div>
     <div id="course-codes-container"></div>
-  </div>
 
-  <br>
-  <br>
-  <div class="Rate">
-    <button class="evaluate-button" id="evaluate" disabled>Evaluate</button>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <div class="Rate">
+      <button class="evaluate-button" id="evaluate" disabled>Evaluate</button>
+    </div>
   </div>
 
   <script src="script_input_course.js"></script>
+
+  <footer></footer>
 </body>
-
-<footer>
-  <div class="">
-    <h5></h5>
-    </ul>
-  </div>
-  </div>
-</footer>
-
-</html>
-
-
-
 </html>

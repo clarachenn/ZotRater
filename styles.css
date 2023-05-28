@@ -6,128 +6,67 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #FFC72C;/*#004F9F; /* UCI Blue background color */
-
+    background-color: #ffffff;
 }
 
-main {
-    padding: 20px;
-    color: #FFFFFF; /* White text color */
-}
 
 table {
-  padding: 10px;
-  border-collapse: collapse;
-  width: 10px;
-  text-align: left;
-  border-radius: 5px;
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+    border-radius: 5px;
+    background-color: #ecf1f1;
+    margin: 0 auto;
+    margin-bottom: 30px;
 }
 
-td, th {
-  border: none;
-  padding: 20px;
-  border-spacing: 30px;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 30px;
-  padding-right: 40px;
+
+th, td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: none;
+    border-left: 1px solid #5eb8a1;
+    font-size: 16px;
 }
 
-.border {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    border: 10px solid #FFC72C;
-    border-radius: 10px;
-    border-style: solid;
+
+th:first-child, td:first-child {
+    border-left: none;
 }
+
 
 hr {
     height:5px;
+    margin-top: -10px;
     border-width:0;
     background-color:#00A4BD;
-  }
+}
 
 header {
-    background-color: #FFC72C; /* UCI Yellow header background color */
+    background-color: #ffffff;
     padding: 20px;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+
 header h1 {
-    font-size: 70px;
+    font-size: 90px;
     font-weight: 600;
+    color: #707c96;
     background-image: linear-gradient(to left, #553c9a, #b393d3);
-    color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
-  }
-  header h1{
-    color: #212A3F;
-    font-size: 45px;2
-  }
-  header p{
-    color: #434F5B;
-  }
-  #topnav{
-    font-family: 'Dancing Script', cursive;
-    background-color: #434F5B;
-    font-size: 30px;
-    text-transform: lowercase;
-    width: 415px;
-    margin: 0 auto;
-  }
-  #topnav ul{
-    padding: 20px 15px;
-    margin: 0px;
-    text-align: center;
-  }
-  #topnav ul li{
-    list-style-type: none;
-    display: inline;
-  }
-  #topnav ul li a{
-    color: #F2F2F2;
-    text-decoration: none;
-    margin: 0px 5px;
-    padding: 5px;
-  }
-  #topnav ul li a:hover{
-    border-bottom: 3px solid #F2F2F2;
-    transition: 50ms linear 0s;
-    -moz-transition: 50ms linear 0s;
-    -webkit-transition: 50ms linear 0s;
-  }
-  #content{
-    font-family: 'Lora', serif;
-  }
-  #content h1, h2, h3, h4, h5, h6{
-    color: #212A3F;
-    text-align: center;
-    font-family: 'Dancing Script', cursive;
-  }
-
-
-.container {
-    text-align: center;
     margin-top: 20px;
-}
-    
-.form-group {
-    display: grid;
-    place-content: center;
+    margin-bottom: 10px;
 }
 
-.input-group {
-    margin-right: 10px;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
+
+header p {
+      color: #6894c0;
+      margin-bottom: 10px;
 }
+
 
 .radio-group {
     display: flex;
@@ -135,60 +74,59 @@ header h1 {
     justify-content: flex-start;
 }
 
+
 .radio-group label {
     margin-right: 5px;
 }
   
-  th, td {
+th, td {
     padding: 20px;
-    text-align: middle;
+    text-align: center;
     border-bottom: none;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
+}
+
+
+th {
+    background-color: #a3d5cb;
+}
+
 
 button {
     margin-top: 10px;
     margin-left: 20px;
     padding: 5px 10px;
-    background-color: #337ab7;
-    color: #fff;
+    background-color: #73c4b1;
+    color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
+
 .submit-button {
-    padding: 10px 20px;
-    margin-top: 20px;
+    padding: 15px 24px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
 }
+
 
 .evaluate-button {
-    padding: 10px 20px;
-    margin-top: 20px;
+  padding: 10px 15px;
+    margin: 80px;
+  font-size: 20px;
 }
 
-.course-code-row {
-    align-items: center;
-    margin-bottom: 5px;
-}
 
 .course-code-row span {
     margin-right: 5px;
     font-weight: bold;
 }
 
-#ratingContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-}
-
-footer {
-    background-color: #FFFFFF; /* White footer background color */
-    padding: 20px;
-    text-align: center;
-    color: #000000; /* Black text color */
+.logo2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
 }

@@ -86,7 +86,7 @@ def get_course_directory():
 
 
 def main():
-    courses_list = [["I&C Sci", 35680, "G"], ["I&C Sci", 35610, "G"], ["I&C Sci", 35640, "PNP"]]
+    # courses_list = [["I&C Sci", 35680, "G"], ["I&C Sci", 35610, "G"], ["I&C Sci", 35640, "PNP"]]
     run(courses_list)
 
 
