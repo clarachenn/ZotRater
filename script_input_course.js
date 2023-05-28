@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //console.log(totalInput);
         const test = [["I&C Sci", "35680", "G"], ["COMPSCI", "23344", "G"], ["I&C Sci", "89000", "PNP"]];
         const encodedTest = JSON.stringify(test);
-
+        
         fetch('http://localhost:5000/run', {
             method: 'POST',
             headers: {
@@ -88,14 +88,19 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body : encodedTest
         })
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+                console.log("ERROORRRRRR");
+            }
+            return response.json();
+        })
           .then(result => {
             console.log(result);
           })
           .catch(error => {
             console.error("Error: ", error);
           });
-        //window.location.href = 'ratings.html';
+        //window.location.href = 'ratings.html?data=Z';
         totalInput = []
         
     }

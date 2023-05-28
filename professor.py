@@ -43,11 +43,11 @@ class Professor:
         response = requests.get(url)
         content = response.text
         string = str(content)
-        
+        print(string)
         ind = string.find("avgRating")
         val = string[ind:ind+14]
         part = val.split(":")
-        print(f'{val} from professor.py')
+        
         if "," in part[1]:
             
             self.prof_rating = part[1][0]
@@ -60,6 +60,7 @@ class Professor:
             self.prof_diff = part2[1][0]
         else:
             self.prof_diff = part2[1]
+        print(f'{val2} from professor.py')
         ind3 = string.find("legacyId")
         val3 = string[ind3:ind3+17]
         if ',"' in val3:
