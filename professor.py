@@ -62,12 +62,3 @@ class Professor:
                 element = element.replace("&#x27;", "'")
             lst.append(element.strip())
         self.top_tags = lst
-
-
-
-if __name__ == "__main__":
-    cls = Professor("ALFARO, S.")
-    cls.load_prof_data()
-    print(cls.prof_rating)
-    print(cls.prof_diff)
-    print(cls.top_tags)

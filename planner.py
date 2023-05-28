@@ -18,7 +18,6 @@ class Planner:
         self.all_courses_gpa = 0
         self.course_load_time = 0
         self.average_rating = 0
-        self.compatibility_score = 0
         self.compatibility_word = ""
 
     def set_course_obj_list(self):
@@ -78,10 +77,10 @@ class Planner:
         elif self.average_rating >= 8:
             self.compatibility_word = "excellent"
         elif self.average_rating >= 6:
+            self.compatibility_word = "great"
+        elif self.average_rating >= 5:
             self.compatibility_word = "good"
-        elif self.average_rating >= 4:
+        elif self.average_rating >= 3:
             self.compatibility_word = "ok"
-        elif self.average_rating >= 2:
-            self.compatibility_word = "poor"
         else:
-            self.compatibility_word = "very poor"
+            self.compatibility_word = "poor"

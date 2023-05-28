@@ -15,7 +15,6 @@ class WebAPI:
         response_obj = None
         try:
             decoded_url = parse.unquote(url)
-            print("link:", decoded_url)
             with request.urlopen(decoded_url) as response:
                 json_str = response.read()
                 response_obj = json.loads(json_str)

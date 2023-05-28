@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from urllib import parse
 from planner import Planner
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,12 +28,12 @@ class CustomException(Exception):
     def __str__(self):
         return f"CustomException: {self.message}"
 
+
 @app.post("/run")
 def run(courses_list: list[list[str | int]]):
     # get course codes and grading option from input - nested list
     for code in courses_list:
         code[1] = int(code[1])
-
 
     planner = Planner(courses_list)
 
@@ -42,9 +43,26 @@ def run(courses_list: list[list[str | int]]):
     planner.set_average_rating()
     planner.set_compatibility_word()
 
-    print("planner compatibility:", planner.compatibility_score)
-    print("compatibility word:", planner.compatibility_word)
-    return planner.compatibility_word
+    course_name_list = []
+    prof_name_list = []
+    course_rating_list = []
+    course_gpa_list = []
+    pass_rate_list = []
+    prof_rating_list = []
+    prof_difficulty_list = []
+    prof_keywords_list = []
+    for course in planner.course_obj_list:
+        decoded_str = parse.unquote(course.department)
+        course_name_list.append(f"{decoded_str} {course.number}")
+        prof_name_list.append(course.professor)
+        course_rating_list.append(course.course_rating)
+        course_gpa_list.append(f"{course.grade_obj.course_gpa:.2f}")
+        pass_rate = course.grade_obj.pass_count / (course.grade_obj.pass_count + course.grade_obj.no_pass_count)
+        pass_rate_list.append(f"{pass_rate:.2f}")
+        prof_rating_list.append(course.prof_obj.prof_rating)
+        prof_difficulty_list.append(course.prof_obj.prof_diff)
+        prof_keywords_list.append(course.prof_obj.top_tags)
+    return [f"{planner.average_rating:.2f}", planner.compatibility_word, course_rating_list, course_gpa_list, pass_rate_list, prof_rating_list, prof_difficulty_list, prof_keywords_list]
 
 
 @app.get("/get_course_directory")
@@ -74,6 +92,5 @@ def main():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app",  port=5000, reload = True)
-    #main()
-
+    uvicorn.run("main:app",  port=5001, reload = True)
+    main()

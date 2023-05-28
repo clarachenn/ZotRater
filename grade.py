@@ -10,6 +10,7 @@ class CustomException(Exception):
     def __str__(self):
         return f"CustomException: {self.message}"
 
+
 class Grade(WebAPI):
     def __init__(self, department, number, course_type, professor):
         self.department = department
