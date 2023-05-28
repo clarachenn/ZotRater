@@ -15,6 +15,24 @@ main {
     color: #FFFFFF; /* White text color */
 }
 
+table {
+  padding: 10px;
+  border-collapse: collapse;
+  width: 10px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+td, th {
+  border: none;
+  padding: 20px;
+  border-spacing: 30px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
 .border {
     position: fixed;
     top: 0;
@@ -23,6 +41,8 @@ main {
     bottom: 0;
     z-index: -1;
     border: 10px solid #FFC72C;
+    border-radius: 10px;
+    border-style: solid;
 }
 
 hr {
@@ -96,7 +116,7 @@ header h1 {
     text-align: center;
     margin-top: 20px;
 }
-
+    
 .form-group {
     display: grid;
     place-content: center;
@@ -118,16 +138,11 @@ header h1 {
 .radio-group label {
     margin-right: 5px;
 }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
   
   th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    text-align: middle;
+    border-bottom: none;
   }
   
   th {

@@ -4,29 +4,21 @@
 <!--  HEADER OF THE PAGE -->
 <header>
   <div class="logo">
-    <img src="anteater-logo.png" alt="Anteater Logo">
+    <img src="anteater-logo.png" alt="Anteater Logo" style=="width:100px;height:100px;">
+    <!--
     <a href="#" class="logo">ZotRater</a>
     <nav class="nav-items">
       <a href="#">Home</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
+    -->
     <h1 style="background-color:DodgerBlue;">Zot-Rater</h1>
     <p>Rate your Scheulde!</p>
     <link rel="stylesheet" href="styles.css">
 </header>
 <br>
 
-<!--
-<nav id="topnav">
-  <ul>
-    <li><a href="#">RMP</a></li>
-    <li><a href="#">Zotistics</a></li>
-    <li><a href="#">AntAlamac</a></li>
-  </ul>
-
-</nav>
--->
 <hr>
 
 <!DOCTYPE html>
@@ -38,14 +30,14 @@
 
 <body>
   <br>
-  <p>Use the dropdown menu and textbox to enter your classes</p>
+  <p style="color:DodgerBlue;" style="font-family:verdana;">Use the dropdown menu and textbox to enter your Courses↓</p>
 
   <br>
   <div class="container">
     <form action="#" method="post" id="evaluation-form">
-      <table>
+      <table style="background-color:#33475b;margin-left:auto;margin-right:auto;">
         <tr>
-          <th>School</th>
+          <th style=" width:20%">School</th>
           <th>Course Code</th>
           <th>Grading Option</th>
         </tr>
@@ -62,10 +54,11 @@
           </td>
 
           <td>
-            <label for="option-pnp">P/NP</label>
             <input type="radio" name="option" id="option-pnp" value="pnp" required>
-            <label for="option-g">Letter Grade</label>
+            <label for="option-pnp">P/NP</label>
+            <br>
             <input type="radio" name="option" id="option-g" value="g" required>
+            <label for="option-g">Letter Grade</label>
           </td>
         </tr>
       </table>
@@ -82,10 +75,23 @@
   <br>
   <div class="Rate">
     <button class="evaluate-button" id="evaluate" disabled>Evaluate</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 
   <script src="script_input_course.js"></script>
 </body>
+
+<footer>
+  <div class="">
+    <h5></h5>
+    </ul>
+  </div>
+  </div>
+</footer>
 
 </html>
 
