@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from planner import Planner
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -19,11 +19,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-def run(courses_list):
+@app.post("/run")
+def run(courses_list: list[list[str | int]]):
     # get course codes and grading option from input - nested list
     # courses_list format: [["I&C Sci", 34401, "G"],["COMPSCI", 23344, "G"],["I&C Sci", 89000, "PNP"]]
-
+    for code in courses_list:
+        code[1] = int(code[1])
     planner = Planner(courses_list)
 
     # set planner attributes
@@ -68,6 +69,6 @@ def main():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=5000)
-    main()
+    uvicorn.run("main:app", port=5000, reload=True)
+    # main()
 
