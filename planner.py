@@ -1,22 +1,25 @@
 from course import Course
 
 
+class CustomException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return f"CustomException: {self.message}"
+
+
 class Planner:
     def __init__(self, courses_list):
         self.courses_list = courses_list
         self.course_obj_list = []
-
-        # self.prof_list = prof_list
-        # self.prof_obj_list = []
-
         self.course_prof_list = []
         self.num_courses = len(courses_list)
         self.all_courses_gpa = 0
         self.course_load_time = 0
         self.average_rating = 0
         self.compatibility_score = 0
-
-        self.compatibility = ""
+        self.compatibility_word = ""
 
     def set_course_obj_list(self):
         """
@@ -34,13 +37,6 @@ class Planner:
             course_obj.set_course_rating()
             self.course_obj_list.append(course_obj)
 
-    """
-    def set_prof_obj_list(self):
-        for prof in self.prof_list:
-            prof_obj = ""
-            self.prof_obj_list.append(prof_obj)
-    """
-
     def set_average_gpa(self):
         """
         calculates the average gpa of all the courses combined
@@ -53,14 +49,7 @@ class Planner:
         try:
             self.all_courses_gpa = all_gpa_sum / self.num_courses
         except ZeroDivisionError:
-
-            print("no courses entered")
-
-    """
-    def set_course_prof_list(self):
-        for i in range(self.num_courses):
-            self.course_prof_list.append([self.course_obj_list[i], self.prof_obj_list[i]])
-    """
+            raise CustomException("No courses entered")
 
     def set_average_rating(self):
         """
@@ -68,22 +57,31 @@ class Planner:
         :return:
         """
         rating_sum = 0
+        course_count = 0
         for course in self.course_obj_list:
-            rating_sum += course.course_rating
-        self.average_rating = rating_sum / self.num_courses
+            if course.course_rating is not None:
+                rating_sum += course.course_rating
+                course_count += 1
+            else:
+                raise CustomException("Error generating course rating")
+        self.average_rating = rating_sum / course_count
+        if course_count != self.num_courses:
+            raise CustomException("Some courses do not have a rating")
 
-    def set_compatibility_score(self):
+    def set_compatibility_word(self):
         """
-        sets the compatibility score depending on the average rating of all courses
+        sets the compatibility word depending on the average rating of all courses
         :return:
         """
         if self.average_rating >= 9:
-            self.compatibility = "perfect"
+            self.compatibility_word = "perfect"
         elif self.average_rating >= 8:
-            self.compatibility = "excellent"
+            self.compatibility_word = "excellent"
         elif self.average_rating >= 6:
-            self.compatibility = "good"
+            self.compatibility_word = "good"
         elif self.average_rating >= 4:
-            self.compatibility = "ok"
+            self.compatibility_word = "ok"
         elif self.average_rating >= 2:
-            self.compatibility = "poor"
+            self.compatibility_word = "poor"
+        else:
+            self.compatibility_word = "very poor"

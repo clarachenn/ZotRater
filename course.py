@@ -1,8 +1,15 @@
 import json
-from main import CustomException
 from WebAPI import WebAPI
 from grade import Grade
 from professor import Professor
+
+
+class CustomException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return f"CustomException: {self.message}"
 
 
 class Course(WebAPI):
