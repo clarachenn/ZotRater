@@ -15,41 +15,16 @@ class Professor:
         link_name = f"{f_name}%20{l_name}"
         return link_name
 
-    def find_prof(self, name):
-        url = f"https://www.ratemyprofessors.com/search/professors/1074?q={name[5:]}"
-        
-        response = requests.get(url)
-        content = response.text
-        string = str(content)
-        new_name = ""
-        first_ind = find_all(str(content), 'firstName')
-        for i in first_ind:
-            start_of_first = string.find(':', i)
-            firstName = string[start_of_first+2:string.find(',', start_of_first)-1]
-            print(firstName)
-            if firstName[0] == name[0]:
-                new_name += firstName
-                break
-        new_name += "%20" + name[5:]
-        print(new_name)
-
-
     def load_prof_data(self):
         name = self.rate_my_professor()
-        print(name)
-        name = self.find_prof(name)
         url = f"https://www.ratemyprofessors.com/search/professors/1074?q={name}"
-        
         response = requests.get(url)
         content = response.text
         string = str(content)
-        print(string)
         ind = string.find("avgRating")
         val = string[ind:ind+14]
         part = val.split(":")
-        
         if "," in part[1]:
-            
             self.prof_rating = part[1][0]
         else:
             self.prof_rating = part[1]
@@ -60,7 +35,6 @@ class Professor:
             self.prof_diff = part2[1][0]
         else:
             self.prof_diff = part2[1]
-        print(f'{val2} from professor.py')
         ind3 = string.find("legacyId")
         val3 = string[ind3:ind3+17]
         if ',"' in val3:
@@ -88,11 +62,3 @@ class Professor:
                 element = element.replace("&#x27;", "'")
             lst.append(element.strip())
         self.top_tags = lst
-
-def find_all(a_str, sub):
-    start = 0
-    while True:
-        start = a_str.find(sub, start)
-        if start == -1: return
-        yield start
-        start += len(sub)
