@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<!--  HEADER OF THE PAGE -->
+<header>
+  <div class="logo">
+    <img src="anteater-logo.png" alt="Anteater Logo">
+    <a href="#" class="logo">ZotRater</a>
+    <nav class="nav-items">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <h1 style="background-color:DodgerBlue;">Zot-Rater</h1>
+    <p>Rate your Scheulde!</p>
+    <link rel="stylesheet" href="styles.css">
+</header>
+<br>
+
+<!--
+<nav id="topnav">
+  <ul>
+    <li><a href="#">RMP</a></li>
+    <li><a href="#">Zotistics</a></li>
+    <li><a href="#">AntAlamac</a></li>
+  </ul>
+
+</nav>
+-->
+<hr>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <br>
+  <p>Use the dropdown menu and textbox to enter your classes</p>
+
+  <br>
+  <div class="container">
+    <form action="#" method="post" id="evaluation-form">
+      <table>
+        <tr>
+          <th>School</th>
+          <th>Course Code</th>
+          <th>Grading Option</th>
+        </tr>
+        <tr>
+          <td>
+
+            <select name="departmentsList" id="departments" required>
+              <option value="">--select--</option>
+              <option value="AC ENG">Academic English</option>
+              <option value="AFAM ">African American Studies</option>
+              <option value="Anatomy">Java</option>
+            </select>
+          </td>
+          <td>
+
+            <input type="text" id="course-code" name="course-code" required>
+          </td>
+
+          <td>
+            <label for="option-pnp">P/NP</label>
+            <input type="radio" name="option" id="option-pnp" value="pnp" required>
+            <label for="option-g">Letter Grade</label>
+            <input type="radio" name="option" id="option-g" value="g" required>
+          </td>
+        </tr>
+      </table>
+
+      <button class="submit-button" id="submit">Submit</button>
+
+    </form>
+
+    <div id="result"></div>
+    <div id="course-codes-container"></div>
+  </div>
+
+  <br>
+  <br>
+  <div class="Rate">
+    <button class="evaluate-button" id="evaluate" disabled>Evaluate</button>
+  </div>
+
+  <script src="script_input_course.js"></script>
+</body>
+
+</html>
+
+
+
+</html>
