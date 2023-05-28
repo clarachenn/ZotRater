@@ -1,7 +1,7 @@
 import json
 from WebAPI import WebAPI
 from grade import Grade
-from rmp import Professor
+from professor import Professor
 
 
 class Course(WebAPI):
@@ -27,7 +27,7 @@ class Course(WebAPI):
         except IndexError:
             return "dept + course code don't match"
         except json.JSONDecodeError:
-            print("JSON cannot be decoded.")
+            return "JSON cannot be decoded"
 
     def load_course_data(self):
         """
@@ -59,17 +59,48 @@ class Course(WebAPI):
         :return:
         """
         self.prof_obj = Professor(self.professor)
+        self.prof_obj.load_prof_data()
+
 
     def set_course_rating(self):
         """
         calculates the rating for each course
         :return:
         """
-        pass
+        gpa = self.grade_obj.course_gpa
+        units = self.units
+        prof_rating = self.prof_obj.prof_rating
+        prof_difficulty = self.prof_obj.prof_diff
+
+        if gpa >= 3.5:
+            gpa_input = gpa * 2.25
+        elif gpa >= 3:
+            gpa_input = gpa * 2.3
+        elif gpa >= 2:
+            gpa_input = gpa * 2.4
+        elif gpa >= 0:
+            gpa_input = gpa * 2.5
+
+        if prof_rating >= 4:
+            prof_rating_input = prof_rating * 0.9
+        elif prof_rating >= 0:
+            prof_rating_input = prof_rating * 1
+
+        if prof_difficulty >= 4:
+            prof_input = prof_difficulty * 0.95
+        elif prof_difficulty >= 0:
+            prof_input = prof_difficulty * 0.85
+
+        res = gpa_input + prof_rating_input - (units * 0.4) - prof_input
+
+        # res = (gpa * 2.25) + (prof_rating * 1.0) - (units * 0.4) - (prof_difficulty * .95)
+        # res = (gpa * 2.4) + (prof_rating * 1.05) - (units * 0.3) - (prof_difficulty * 1)
+
+        print(res)
 
 
 def main():
-    n = Course("I&C Sci", "35680", "P")
+    n = Course("I&C SCI", "35680", "P")
     n.load_course_data()
     n.set_grade()
 

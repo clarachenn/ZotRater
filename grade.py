@@ -29,7 +29,7 @@ class Grade(WebAPI):
                 print("no grades for this course")
 
         except json.JSONDecodeError:
-            print("JSON cannot be decoded.")
+            return "JSON cannot be decoded."
 
     def load_grade_data(self):
         """
