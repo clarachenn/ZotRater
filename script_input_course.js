@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function performEvaluation() {
         console.log("Performing evaluation...");
         const test = [["I&C Sci", "35680", "G"], ["COMPSCI", "23344", "G"], ["I&C Sci", "89000", "PNP"]];
-        console.log(totalInput[0][2]);
         const encodedTest = JSON.stringify(totalInput);
         while (courseCodesContainer.firstChild)
         {
@@ -94,18 +93,18 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
           .then(result => {
-            console.log(result);
-            if (typeof(result) != 'string')
+            
+            if (result.details != null)
             {
                 alert(result.detail);
                 
                 return;
             }
-            //if (console.log)
-            console.log(result.detail);
+            console.log(result);
+            //console.log(result.detail);
             
             const data = 3.5;
-            window.location.href = `ratings.html?data=${data}`;
+            //window.location.href = `ratings.html?data=${data}`;
             
           })
           .catch(error => {
