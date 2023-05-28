@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from planner import Planner
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -27,9 +27,13 @@ class CustomException(Exception):
     def __str__(self):
         return f"CustomException: {self.message}"
 
-
-def run(courses_list):
+@app.post("/run")
+def run(courses_list: list[list[str | int]]):
     # get course codes and grading option from input - nested list
+    for code in courses_list:
+        code[1] = int(code[1])
+
+
     planner = Planner(courses_list)
 
     # set planner attributes
@@ -57,9 +61,9 @@ def get_course_directory():
                 for item in j_obj:
                     department_names.add(item['department'])
         except Exception as e:
-            raise CustomException(e)
+            raise HTTPException(status_code = 400, detail = e)
     else:
-        raise CustomException("The path for course.json does not exist")
+        raise HTTPException(status_code = 400, detail = "The path for course.json does not exist")
     return sorted(department_names)
 
 
@@ -70,6 +74,6 @@ def main():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=5000)
-    main()
+    uvicorn.run("main:app",  port=5000, reload = True)
+    #main()
 

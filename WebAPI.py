@@ -1,6 +1,6 @@
 import json
 from urllib import request, error, parse
-
+from fastapi import HTTPException
 
 class CustomException(Exception):
     def __init__(self, message):
@@ -21,9 +21,9 @@ class WebAPI:
                 response_obj = json.loads(json_str)
         except error.HTTPError as err:
             if err.code == 400:
-                raise CustomException("Bad request")
+                raise HTTPException(status_code =400, detail="Bad request")
         except error.URLError as e:
-            raise CustomException(e)
+            raise HTTPException(status_code=400, detail= e)
 
         return response_obj
 
