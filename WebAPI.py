@@ -1,5 +1,13 @@
 import json
 from urllib import request, error, parse
+from fastapi import HTTPException
+
+class CustomException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return f"CustomException: {self.message}"
 
 
 class WebAPI:
@@ -13,11 +21,12 @@ class WebAPI:
                 response_obj = json.loads(json_str)
         except error.HTTPError as err:
             if err.code == 400:
-                print("bad request")
+                raise HTTPException(status_code =400, detail="Bad request")
         except error.URLError as e:
-            print(e)
+            raise HTTPException(status_code=400, detail= e)
 
         return response_obj
+
 
     def set_proper_format(self, url):
         url = parse.quote(url)
