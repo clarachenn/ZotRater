@@ -10,7 +10,7 @@ class Professor:
 
     def rate_my_professor(self):
         f_and_l = self.professor_name.split(", ")
-        f_name = f_and_l[1]
+        f_name = f_and_l[1][:-1]
         l_name = f_and_l[0]
         link_name = f"{f_name}%20{l_name}"
         return link_name
@@ -62,3 +62,12 @@ class Professor:
                 element = element.replace("&#x27;", "'")
             lst.append(element.strip())
         self.top_tags = lst
+
+
+
+if __name__ == "__main__":
+    cls = Professor("ALFARO, S.")
+    cls.load_prof_data()
+    print(cls.prof_rating)
+    print(cls.prof_diff)
+    print(cls.top_tags)
