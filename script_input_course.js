@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(result);
             //console.log(result.detail);
             
-            const data = 3.5;
-            //window.location.href = `ratings.html?data=${data}`;
+            //const data = 3.5;
+            window.location.href = `ratings.html?data=${result}`;
             
           })
           .catch(error => {
