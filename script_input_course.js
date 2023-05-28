@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const courseCodesContainer = document.getElementById("course-codes-container");
     const submitButton = document.getElementById("submit");
     const evaluateButton = document.getElementById("evaluate");
+    const dropDown = document.getElementById("departments");
     const totalInput = [];
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
+        
         displayInput();
-        console.log(window.location.origin);
         evaluateButton.removeAttribute("disabled");
 
     });
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
         }
-        totalInput.push([courseCode, gpa])
+        totalInput.push([courseCode, gpa, dropDown.value])
         const row = document.createElement("div");
         row.classList.add("course-code-row");
     
@@ -52,14 +53,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
         courseCodesContainer.appendChild(row);
     
-        courseCodeInput.value = "";
-
-          
+        courseCodeInput.value = "";          
     }
 
     function createDepartments() {
-        const dropDown = document.getElementById("departments");
-        fetch("http://localhost:5000/get_names", {
+        fetch("http://localhost:5000/get_course_directory", {
             headers: {
                 'Access-Control-Allow-Origin':'*'
               }})
