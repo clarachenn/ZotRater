@@ -1,5 +1,5 @@
 from course import Course
-
+from fastapi import HTTPException
 
 class CustomException(Exception):
     def __init__(self, message):
@@ -49,7 +49,7 @@ class Planner:
         try:
             self.all_courses_gpa = all_gpa_sum / self.num_courses
         except ZeroDivisionError:
-            raise CustomException("No courses entered")
+            raise HTTPException(status_code=400, detail= "No courses entered")
 
     def set_average_rating(self):
         """
@@ -63,10 +63,10 @@ class Planner:
                 rating_sum += course.course_rating
                 course_count += 1
             else:
-                raise CustomException("Error generating course rating")
+                raise HTTPException(status_code=400, detail="Error generating course rating")
         self.average_rating = rating_sum / course_count
         if course_count != self.num_courses:
-            raise CustomException("Some courses do not have a rating")
+            raise HTTPException(status_code=400, detail="Some courses do not have a rating")
 
     def set_compatibility_word(self):
         """

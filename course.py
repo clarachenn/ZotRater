@@ -2,7 +2,7 @@ import json
 from WebAPI import WebAPI
 from grade import Grade
 from professor import Professor
-
+from fastapi import HTTPException
 
 class CustomException(Exception):
     def __init__(self, message):
@@ -33,9 +33,9 @@ class Course(WebAPI):
             self.course_type = json_obj["schools"][0]["departments"][0]["courses"][0]["sections"][0]["sectionType"]
             self.units = json_obj["schools"][0]["departments"][0]["courses"][0]["sections"][0]["units"]
         except IndexError:
-            raise CustomException("The department and the course code don't match")
+            raise HTTPException(status_code = 400, detail =  "The department and the course code don't match")
         except json.JSONDecodeError:
-            raise CustomException("The JSON cannot be decoded")
+            raise HTTPException (status_code = 400, detail =  "The JSON cannot be decoded")
 
     def load_course_data(self):
         """
@@ -53,7 +53,7 @@ class Course(WebAPI):
             json_obj = json.dumps(course_obj)
             self.extract_json(json_obj)
         else:
-            raise CustomException("Error fetching data from url")
+            raise HTTPException(status_code=400, detail ="Error fetching data from url")
 
     def set_grade(self):
         """
@@ -64,7 +64,7 @@ class Course(WebAPI):
             self.grade_obj = Grade(self.department, self.number, self.course_type, self.professor)
             self.grade_obj.load_grade_data()
         except Exception as e:
-            raise CustomException(e)
+            return HTTPException(status_code = 400, detail = e) 
 
     def set_prof_obj(self):
         """
@@ -76,10 +76,10 @@ class Course(WebAPI):
                 self.prof_obj = Professor(self.professor)
                 self.prof_obj.load_prof_data()
             except IndexError:
-                raise CustomException(f"The department and the course code don't match for: {self.department} and "
+                raise HTTPException(status_code = 400, detail = f"The department and the course code don't match for: {self.department} and "
                                       f"{self.course_code}")
         else:
-            raise CustomException(f"No professor associated with the course: {self.course_code}")
+            raise HTTPException(status_code = 400, detail = f"No professor associated with the course: {self.course_code}")
 
     def set_course_rating(self):
         """
@@ -120,7 +120,7 @@ class Course(WebAPI):
                 elif grade >= 0:
                     gpa_input = grade * 3
             else:
-                raise CustomException("Not a valid course grading option")
+                raise HTTPException(status_code = 400, detail = "Not a valid course grading option")
 
             if prof_rating >= 4:
                 prof_rating_input = prof_rating * 0.9
