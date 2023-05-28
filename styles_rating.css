@@ -12,6 +12,18 @@ body {
 h1 {
     margin-top: 30px;
 }
+
+header h1 {
+    font-size: 90px;
+    font-weight: 600;
+    color: #707c96;
+    background-image: linear-gradient(to left, #553c9a, #b393d3);
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 .departmentContainer {
     overflow: auto;
 }
@@ -120,3 +132,13 @@ button {
     margin-left: 10px;
     font-size: 24px;
 }
+
+
+.logo2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
+
+
